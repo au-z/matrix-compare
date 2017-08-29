@@ -1,0 +1,17 @@
+{
+  "name": "matrix-compare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gl-matrix": "^2.4.0",
+    "jest": "^20.0.4",
+    "three": "^0.87.1"
+  }
+}
