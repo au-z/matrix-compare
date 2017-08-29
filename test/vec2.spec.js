@@ -7,12 +7,12 @@ describe('vec2 parity tests', () => {
 		expect(threeVec.y).toBe(glmVec[1])
 	}
 
-	it('vec2.create', () =>  {
+	it('vec2.create == new Vector2', () =>  {
 		let s = vec2.create()
 		let t = new Vector2()
 		test(s,t)
 	})
-	it('vec2.fromValues', () => {
+	it('vec2.fromValues == new Vector2', () => {
 		let s = vec2.fromValues(1.0, 2.0)
 		let t = new Vector2(1.0, 2.0)
 		test(s,t)

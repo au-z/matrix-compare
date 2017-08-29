@@ -16,17 +16,17 @@ describe('vec3 parity tests', () => {
 		expect(threeVec.z).toBe(glmVec[2])
 	}
 	
-	it('vec3.create', () => {
+	it('vec3.create == new Vector3', () => {
 		let s = vec3.create()
 		let t = new Vector3()
 		test(s,t)
 	})
-	it('vec3.fromValues', () => {
+	it('vec3.fromValues == new Vector3', () => {
 		let s = vec3.fromValues(1.0, 2.0, 3.0)
 		let t = new Vector3(1.0, 2.0, 3.0)
 		test(s,t)
 	})
-	it('vec3.transformMat3', () => {
+	it('vec3.transformMat3 == Vector3.applyMatrix3', () => {
 		let vecValues = [1.0, 2.0, 3.0]
 		let matValues = [
 			1.0, 1.0, 1.0, 
@@ -45,7 +45,7 @@ describe('vec3 parity tests', () => {
 		t.applyMatrix3(threeMat3)
 		test(s,t)
 	})
-	it('vec3.transformMat4', () => {
+	it('vec3.transformMat4 == Vector3.applyMatrix4', () => {
 		let vecValues = [1.0, 2.0, 3.0]
 		let matValues = [
 			1.0, 1.0, 1.0, 1.0,
