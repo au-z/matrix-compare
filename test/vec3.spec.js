@@ -1,5 +1,6 @@
 const three = require('three')
 const glm = require('gl-matrix')
+const equal = require('./helpers/equal')
 
 const Vector3 = three.Vector3
 const Matrix3 = three.Matrix3
@@ -10,21 +11,15 @@ const mat3 = glm.mat3
 const mat4 = glm.mat4
 
 describe('vec3 parity tests', () => {
-	function expectEqual(glmVec, threeVec) {
-		expect(threeVec.x).toBeCloseTo(glmVec[0], 6)
-		expect(threeVec.y).toBeCloseTo(glmVec[1], 6)
-		expect(threeVec.z).toBeCloseTo(glmVec[2], 6)
-	}
-	
 	it('vec3.create == new Vector3', () => {
 		let s = vec3.create()
 		let t = new Vector3()
-		expectEqual(s,t)
+		equal.vec3(s,t)
 	})
 	it('vec3.fromValues == new Vector3', () => {
 		let s = vec3.fromValues(1.0, 2.0, 3.0)
 		let t = new Vector3(1.0, 2.0, 3.0)
-		expectEqual(s,t)
+		equal.vec3(s,t)
 	})
 	it('vec3.transformMat3 == Vector3.applyMatrix3', () => {
 		let vecValues = [1.0, 2.0, 3.0]
@@ -46,7 +41,7 @@ describe('vec3 parity tests', () => {
 		threeMat3.set(...matValues)
 		t.applyMatrix3(threeMat3)
 		
-		expectEqual(s,t)
+		equal.vec3(s,t)
 	})
 	it('vec3.transformMat4 == Vector3.applyMatrix4', () => {
 		let vecValues = [1.0, 2.0, 3.0]
@@ -69,6 +64,6 @@ describe('vec3 parity tests', () => {
 		threeMat4.set(...matValues)
 		t.applyMatrix4(threeMat4)
 		
-		expectEqual(s,t)
+		equal.vec3(s,t)
 	})
 })
