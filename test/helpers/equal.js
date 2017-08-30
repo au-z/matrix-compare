@@ -2,13 +2,15 @@ const FLOAT_PRECISION = 6;
 
 module.exports = {
   vec2: (glmVec, threeVec) => {
-    expect(threeVec.x).toBeCloseTo(glmVec[0], FLOAT_PRECISION)
-    expect(threeVec.y).toBeCloseTo(glmVec[1], FLOAT_PRECISION)
+    if(threeVec.toArray) threeVec = threeVec.toArray()      
+    expect(threeVec[0]).toBeCloseTo(glmVec[0], FLOAT_PRECISION)
+    expect(threeVec[1]).toBeCloseTo(glmVec[1], FLOAT_PRECISION)
   },
   vec3: (glmVec, threeVec) => {
-    expect(threeVec.x).toBeCloseTo(glmVec[0], FLOAT_PRECISION)
-    expect(threeVec.y).toBeCloseTo(glmVec[1], FLOAT_PRECISION)
-    expect(threeVec.z).toBeCloseTo(glmVec[2], FLOAT_PRECISION)
+    if(threeVec.toArray) threeVec = threeVec.toArray()
+    expect(threeVec[0]).toBeCloseTo(glmVec[0], FLOAT_PRECISION)
+    expect(threeVec[1]).toBeCloseTo(glmVec[1], FLOAT_PRECISION)
+    expect(threeVec[2]).toBeCloseTo(glmVec[2], FLOAT_PRECISION)
   },
   mat3: (glmMat, threeMat) => {
     let el = threeMat.elements
@@ -42,9 +44,10 @@ module.exports = {
     expect(el[15]).toBeCloseTo(glmMat[15], FLOAT_PRECISION)
   },
   quat: (glmQuat, threeQuat) => {
-    expect(threeQuat.x).toBeCloseTo(glmQuat[0], FLOAT_PRECISION)
-    expect(threeQuat.y).toBeCloseTo(glmQuat[1], FLOAT_PRECISION)
-    expect(threeQuat.z).toBeCloseTo(glmQuat[2], FLOAT_PRECISION)
-    expect(threeQuat.w).toBeCloseTo(glmQuat[3], FLOAT_PRECISION)
+    if(threeQuat.toArray) threeQuat = threeQuat.toArray()
+    expect(threeQuat[0]).toBeCloseTo(glmQuat[0], FLOAT_PRECISION)
+    expect(threeQuat[1]).toBeCloseTo(glmQuat[1], FLOAT_PRECISION)
+    expect(threeQuat[2]).toBeCloseTo(glmQuat[2], FLOAT_PRECISION)
+    expect(threeQuat[3]).toBeCloseTo(glmQuat[3], FLOAT_PRECISION)
   }
 }

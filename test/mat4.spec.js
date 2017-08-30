@@ -44,10 +44,10 @@ describe('mat4 parity tests', () => {
 
   it('mat4.getPosition, mat4.getScaling, mat4.getTranslation == Matrix4.decompose', () => {
     const v = [
-      1.0, 1.0, 1.0, 3.0,
-      1.0, 1.0, 3.0, 3.0,
-      1.0, 1.0, 1.0, 3.0,
-      1.0, 1.0, 1.0, 1.0,
+      1.0, 0.0, 0.0, 5.0,
+      0.0, 1.0, 0.0, 5.0,
+      0.0, 0.0, 1.0, 5.0,
+      0.0, 0.0, 0.0, 1.0,
     ]
 
     const s = mat4.fromValues(...v)
@@ -55,8 +55,8 @@ describe('mat4 parity tests', () => {
     let sRotation = quat.create()
     let sTranslation = vec3.create()
     let sScaling = vec3.create()
-    mat4.getRotation(sRotation, s)
     mat4.getTranslation(sTranslation, s)
+    mat4.getRotation(sRotation, s)
     mat4.getScaling(sScaling, s)
 
     const t = new Matrix4()
@@ -65,6 +65,15 @@ describe('mat4 parity tests', () => {
     let tTranslation = new Vector3()
     let tScaling = new Vector3()
     t.decompose(tTranslation, tRotation, tScaling)
+
+    print.quat(sRotation, 'sRotation')
+    print.quat(tRotation, 'tRotation')
+
+    print.vec3(sTranslation, 'sTranslation')
+    print.vec3(tTranslation, 'tTranslation')
+
+    print.vec3(sScaling, 'sScaling')
+    print.vec3(tScaling, 'tScaling')
 
     equal.mat4(s, t)
     equal.quat(sRotation, tRotation)
