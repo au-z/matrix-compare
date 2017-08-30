@@ -29,40 +29,66 @@ describe('vec3 parity tests', () => {
 	it('vec3.transformMat3 == Vector3.applyMatrix3', () => {
 		let vecValues = [1.0, 2.0, 3.0]
 		let matValues = [
-			1.0, 1.0, 1.0, 
-			3.0, 2.0, 1.0, 
-			2.0, 2.0, 2.0
+			1.0, 0.0, 1.0, 
+			0.0, 1.0, 1.0, 
+			0.0, 0.0, 1.0
 		]
 		
 		let s = vec3.fromValues(...vecValues)
 		let glmMat3 = mat4.fromValues(...matValues)
-
+		print('s', s)
+		vec3.transformMat3(s, s, glmMat3)
+		print('s', s)
+		
 		let t = new Vector3(...vecValues)
 		let threeMat3 = new Matrix3()
 		threeMat3.set(...matValues)
-		
-		vec3.transformMat3(s, s, glmMat3)
+		print('t', t)
 		t.applyMatrix3(threeMat3)
+		print('t', t)
+		
 		test(s,t)
 	})
-	it('vec3.transformMat4 == Vector3.applyMatrix4', () => {
-		let vecValues = [1.0, 2.0, 3.0]
-		let matValues = [
-			1.0, 1.0, 1.0, 1.0,
-			2.0, 3.0, 3.0, 1.0,
-			1.0, 1.0, 3.0, 1.0,
-			1.0, 3.0, 2.0, 1.0
-		]
-		
-		let s = vec3.fromValues(...vecValues)
-		let glmMat4 = mat4.fromValues(...matValues)
-		
-		let t = new Vector3(...vecValues)
-		let threeMat4 = new Matrix4();
-		threeMat4.set(...matValues)
-		
-		vec3.transformMat4(s, s, glmMat4)
-		t.applyMatrix4(threeMat4)
-		test(s,t)
+	it('vec3.inverse', () => {
+		let s = vec3.fromValues(1.0, 2.0, 3.0)
+		print('s', s)
+		vec3.inverse(s, s)
+		print('s:inverse', s)
 	})
+	// it('vec3.transformMat4 == Vector3.applyMatrix4', () => {
+	// 	let vecValues = [1.0, 2.0, 3.0]
+	// 	let matValues = [
+	// 		1.0, 1.0, 1.0, 1.0,
+	// 		2.0, 3.0, 3.0, 1.0,
+	// 		1.0, 1.0, 3.0, 1.0,
+	// 		1.0, 3.0, 2.0, 1.0
+	// 	]
+		
+	// 	let s = vec3.fromValues(...vecValues)
+	// 	let glmMat4 = mat4.fromValues(...matValues)
+		
+	// 	let t = new Vector3(...vecValues)
+	// 	let threeMat4 = new Matrix4();
+	// 	threeMat4.set(...matValues)
+		
+	// 	vec3.transformMat4(s, s, glmMat4)
+	// 	t.applyMatrix4(threeMat4)
+	// 	test(s,t)
+	// })
 })
+
+function print(label, data) {
+	let msg = label + ' ['
+	if(data.x) {
+		for(let i in data) {
+			if(i === 'x' || i === 'y' || i === 'z')
+			msg += data[i] + ', '
+		}
+	} else {
+		for(let i = 0; i < data.length; i++) {
+			msg += data[i] + ', '
+		}
+	}
+	msg += ']'
+	console.log(msg)
+}
