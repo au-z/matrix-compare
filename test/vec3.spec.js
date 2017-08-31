@@ -66,4 +66,9 @@ describe('vec3 parity tests', () => {
 		
 		equal.vec3(s,t)
 	})
+	it('vec3.create() ==  vec3.fromValues(0.0, 0.0, 0.0)', () => {
+		const s = vec3.create()
+		const t = vec3.fromValues(0.0, 0.0, 0.0)
+		equal.vec3(s,t)
+	})
 })
