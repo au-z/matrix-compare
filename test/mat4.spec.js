@@ -4,10 +4,12 @@ const print = require('./helpers/print')
 const equal = require('./helpers/equal')
 
 const Matrix4 = three.Matrix4
+const Matrix3 = three.Matrix3
 const Vector3 = three.Vector3
 const Quaternion = three.Quaternion
 
 const mat4 = glm.mat4
+const mat3 = glm.mat3
 require('../lib/mat4.extension')(mat4)
 const vec3 = glm.vec3
 const quat = glm.quat
